@@ -60,5 +60,11 @@ class OrderController extends Controller
 
         return $this->success($order, 'Order details retrieved successfully');
     }
+
+    public function getAllOrderLists(){
+        $orders = Order::with('userDetails')->get()->toArray();
+        parent::replaceNullWithEmptyString($orders);
+        return $this->success($orders);
+    }
 }
 
